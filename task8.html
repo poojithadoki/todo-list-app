@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: gainsboro url("./ToDo.jpg") no-repeat fixed center /700px 500px ;
+        }
+        marquee {
+    display: block;      
+    margin: 0 auto;       
+    width: 500px;        
+    text-align: center;   
+}
+h1 {
+    text-shadow: 2px 2px whitesmoke;
+    text-transform: capitalize;
+    text-overflow: clip;
+    color: black;
+    font-style: italic;
+    text-align: center;
+    text-decoration: none;
+}
+
+    </style>
+</head>
+<body>
+    <h1><marquee>MY  TO  DO  LIST  APP</marquee></h1>
+    <input type="text" id="itemInput">
+    <button onclick="addItem()"><b>Add Item</b></button>
+    <button id="clearAll"><b>Clear All</b></button>
+    <ol id="list"></ol>
+    <script>
+        const addItem=()=>{
+            const val=document.getElementById("itemInput");
+            const item=document.createElement("li");
+            const input=val.value.trim();
+            if(input==="") return;
+            // item.innerText=input;
+            const textNode=document.createTextNode(input+" ");
+            item.appendChild(textNode);
+            const editButton=document.createElement("button");
+            editButton.innerHTML="<b>Edit</b>";
+            editButton.addEventListener("click",()=>{
+                const data=prompt("EditItem",textNode.textContent.trim());
+                if(data!=null && data.trim()!=""){
+                    textNode.textContent=data+" ";
+                }
+            })
+            const deleteButton=document.createElement("button");
+            deleteButton.innerHTML="<b>Delete</b>";
+            deleteButton.addEventListener("click",()=>{
+                item.remove();
+            })
+            const checkbox=document.createElement("input");
+            checkbox.type="checkbox";
+            checkbox.addEventListener("change",()=>{
+                if(checkbox.checked){
+                    item.style.textDecoration="line-through";
+                }
+                else{
+                    item.style.textDecoration="none";
+                }
+            })
+            item.insertBefore(checkbox,item.firstChild);
+            item.appendChild(editButton);
+            item.appendChild(deleteButton);
+            document.getElementById("list").appendChild(item);
+            val.value="";
+        }
+        clearAll.addEventListener("click",()=>{
+            document.querySelectorAll("li").forEach(element=>element.remove());
+        });
+    </script>
+</body>
+</html>
