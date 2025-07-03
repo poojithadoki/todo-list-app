@@ -6,4 +6,4 @@ A simple to-do list web app using HTML, CSS, JS and DOM manipulation
 - Clear all items
 
 ## Live Demo
-[Click here](https://poojithadoki.github.io/todo-list-app/) to see it live!
+[Click Here](https://poojithadoki.github.io/todo-list-app/) to see it live!
